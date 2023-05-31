@@ -1,0 +1,22 @@
+#N canvas 442 182 924 402 12;
+#X obj 15 249 dac~ 1 2;
+#X obj 317 143 *~;
+#X obj 317 84 *~ 2;
+#X obj 14 59 inlet~;
+#X obj 316 60 inlet~;
+#X obj 651 59 inlet~;
+#X text 12 19 Unprocessed microphone signal;
+#X text 12 36 Received from adc_input abstraction;
+#X text 312 19 Processed microphone signal;
+#X text 312 36 Received from pitchshifting abstraction;
+#X text 649 19 Amplitude control;
+#X text 649 36 Received from bowing abstraction;
+#X text 13 277 dac~ 1 = output to speaker by performer to be used to
+generate feedback;
+#X text 13 315 dac~ 2 = output to speakers to be listened to (but which
+can also be used to generate feedback too);
+#X connect 1 0 0 1;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
+#X connect 4 0 2 0;
+#X connect 5 0 1 1;

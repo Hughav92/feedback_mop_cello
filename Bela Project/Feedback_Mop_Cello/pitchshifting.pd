@@ -1,0 +1,58 @@
+#N canvas 125 200 1533 855 12;
+#X obj 50 441 pitchshifter~;
+#X obj 345 129 pack f f;
+#X obj 664 99 i;
+#X msg 165 392 transpose \$1 \, window \$2 \, delay 0;
+#X obj 757 428 pitchshifter~;
+#X msg 985 387 transpose \$1 \, window 100 \, delay 0;
+#X obj 50 662 +~;
+#X obj 50 561 *~ 0.3;
+#X obj 168 562 *~ 0.7;
+#X obj 49 74 inlet~;
+#X obj 345 74 inlet;
+#X obj 664 74 inlet;
+#X obj 985 74 inlet;
+#X obj 50 758 outlet~;
+#X text 44 28 Microphone signal to be processed;
+#X text 44 45 Received from adc_input abstraction;
+#X text 343 28 Pitchshift value;
+#X text 342 45 Received from pitchshifting abstraction;
+#X text 981 28 Pitchshift value;
+#X text 980 45 Received from pitchshifting abstraction;
+#X text 648 28 Window size;
+#X text 648 45 Received from bowing abstraction;
+#X text 695 99 Convert to integer;
+#X text 227 553 Set amplitudes to equal 1 \, steady window pitchshifter
+higher in mix;
+#X text 46 788 Processed audio signal;
+#X text 46 807 Passed to output abstraction;
+#X text 1102 540 The pitchshifter~ object works using variable rate
+delay lines. Therefore it as a variable window size for the size of
+the delay line. Although 100ms is used as a baseline value in this
+patch \, this doesn't hugely effect interaction as it is only the audio
+signal that is delayed and not any of the parameter changes applied
+to the audio signal. As this audio signal mostly comprises constant
+feedback this isn't really noticed.;
+#X text 1102 700 Two pitchshifter~ objects are used \, both receiving
+the same input and summed for output. The first of these has a stable
+window size of 100ms. The second has a variable window size (from 100ms
+- 10ms) dependent upon the value of the jerk of the bow. This creates
+quite a complex effect on the sound output \, as sudden changes in
+window size effect the sound in a variety of ways \, such as a sudden
+sharp increase in pitch layered on top of the raw tone (which through
+happy accident actually resembles the attack of a bow on a string instrument).
+;
+#X connect 0 0 7 0;
+#X connect 1 0 3 0;
+#X connect 2 0 1 1;
+#X connect 3 0 0 1;
+#X connect 4 0 8 0;
+#X connect 5 0 4 1;
+#X connect 6 0 13 0;
+#X connect 7 0 6 0;
+#X connect 8 0 6 1;
+#X connect 9 0 0 0;
+#X connect 9 0 4 0;
+#X connect 10 0 1 0;
+#X connect 11 0 2 0;
+#X connect 12 0 5 0;

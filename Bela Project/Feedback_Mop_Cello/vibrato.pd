@@ -1,0 +1,26 @@
+#N canvas 194 188 502 514 12;
+#X obj 67 225 t f f;
+#X obj 66 255 -;
+#X obj 67 121 i;
+#X obj 67 145 * 0.0001;
+#X obj 66 390 outlet;
+#X obj 67 44 inlet;
+#X obj 67 97 * 1000;
+#X text 63 3 Capacitive sensor value;
+#X text 64 21 Received from string_position abstraction;
+#X text 141 117 Truncate to 4 decimal places;
+#X text 122 245 Minus preceeding value from current value;
+#X text 119 332 Multiply to put in range of around 0.1/-0.1;
+#X text 64 417 Vibrato modifier to be added to pitchshift semitone
+value;
+#X text 65 436 Passed to string_position abstraction;
+#X text 121 261 y[n] = x[n] - x[n-1];
+#X obj 66 334 * 1000;
+#X connect 0 0 1 1;
+#X connect 0 1 1 0;
+#X connect 1 0 15 0;
+#X connect 2 0 3 0;
+#X connect 3 0 0 0;
+#X connect 5 0 6 0;
+#X connect 6 0 2 0;
+#X connect 15 0 4 0;
